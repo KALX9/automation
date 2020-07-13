@@ -1,0 +1,6 @@
+from pathlib import Path
+from datetime import datetime,timedelta
+
+u = Path('/proc/uptime').read_text().split()[0]
+boot = datetime.now() - timedelta(seconds = float(u))
+print(boot.strftime('%c'))

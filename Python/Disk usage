@@ -1,0 +1,20 @@
+from pathlib import Path
+from os import statvfs as svfs
+import re
+import bisect
+
+#size = [1, 1e+3, 1e+6, 1e+9]      ## GB
+size = [1, 2**10, 2**20, 2**30]  ## GiB
+unit = ['B', 'K', 'M', 'G']
+mline = Path('/proc/mounts').read_text().splitlines()
+mdev = [lp.split()[:2] for lp in mline if re.match(r'^/dev/sd[a-z][1-9]', lp)]
+clt = [(fsl,svfs(mpl)[0]*svfs(mpl)[2],svfs(mpl)[0]*svfs(mpl)[3],mpl) for fsl, mpl in mdev]
+
+def con(byts):
+    index = bisect.bisect(size, byts)-1
+    return "{:.0f}{}".format(byts/size[index], unit[index])
+
+print('{:20} {:^9} {:^9} {:^9} {:>13}'.format('Filesystem','Size','Used','Avail','Mounted-on'))
+print('*'*64)
+for fs in clt:
+     print('{:20} {:^9} {:^9} {:^9}    {:20}'.format(fs[0],con(fs[1]),con(fs[1]-fs[2]),con(fs[2]),fs[3]))   

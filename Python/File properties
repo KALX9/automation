@@ -1,0 +1,11 @@
+from time import ctime
+from pathlib import Path
+from stat import S_IMODE
+
+p = Path('/home/mana/Work/The GNU C Tutorial.pdf').stat()
+print('Owner:',p.st_uid)
+print('Permission:',format(S_IMODE(p.st_mode),'o'))
+print('Size: {:.1f} MB'.format(p.st_size/1024/1024))
+print('File Created:',ctime(p.st_ctime))
+print('Last Modified:',ctime(p.st_mtime))
+print('Last Accessed:',ctime(p.st_atime))

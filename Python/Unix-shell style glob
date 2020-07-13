@@ -1,0 +1,15 @@
+
+path = '/home/mana/Work/books/'
+# Method: 1    # This is best one.                       
+from pathlib import Path
+print(*list(Path(path).rglob('*.py')))
+
+# Method: 2
+import glob
+print(*glob.glob(path+'*.py'))
+
+# Method: 3
+import fnmatch
+import os
+files = os.listdir(path)
+print(*fnmatch.filter(files, '*.py'))

@@ -1,0 +1,42 @@
+from pathlib import Path
+import os
+import re
+
+pss = []
+private_page = []
+list_mem = []
+p = [*Path('/proc').glob('[0-9]*')]
+
+try:
+    pname = [(int(i.name),
+              i.joinpath('status').read_text().splitlines()[0].replace('Name:\t','')) 
+             for i in p]
+except (PermissionError,FileNotFoundError):
+    pass
+
+pname_dict = dict(pname)
+for pid_no in pname_dict:
+  try:
+    osmaps = Path('/proc/'+str(pid_no)+'/smaps')    
+    for text in osmaps.read_text().splitlines():
+        if re.match(r'^Pss', text):
+            pss.append(int(text.split()[1]))
+        if re.match(r'^Private_(Clean|Dirty)',text):
+            private_page.append(int(text.split()[1]))
+    Pss = round(sum(pss)/1024)
+    Private = round(sum(private_page)/1024)
+    Shared = Pss - Private
+    Memory_Usage = Private + Shared
+    pss = []
+    private_page = []
+    list_mem += [[pid_no,pname_dict.get(pid_no),Private,Shared,Memory_Usage]]
+
+  except (PermissionError,FileNotFoundError):
+    pass
+
+mem = sorted(list_mem,key = lambda x: x[4], reverse = True)
+print("{:>5} {:>9} {:>28} {:>19} {:>21}".format(
+    "PID","Process","Private-Memory(MiB)","Shared-Memory(MiB)","Meomory-Usage(MiB)"))
+print('*'*86)
+for pid,comm,prim,shm,memu in mem:
+  print("{:6d}  {:<15}  {:>9}  {:>17}  {:>22}".format(pid,comm,prim,shm,memu))

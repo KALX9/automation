@@ -1,0 +1,6 @@
+from pathlib import Path
+from collections import Counter
+
+p = Path('/home/mana/Work/dup.txt').read_text().splitlines()
+u = [i for i in Counter(p)]
+print(*u, sep = '\n', file = open('/home/mana/new.txt', 'w'))

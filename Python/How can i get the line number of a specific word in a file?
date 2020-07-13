@@ -1,0 +1,6 @@
+from pathlib import Path
+
+p = Path('/etc/hosts').read_text().splitlines()
+rslt = ((i, j) for i,j in enumerate(p,1) if 'localhost' in j)
+for x,y in rslt:
+    print(str(x)+'\t'+ y)

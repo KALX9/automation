@@ -1,0 +1,9 @@
+from datetime import date
+from pathlib import Path
+
+p = Path('/home/mana/Temp/task')
+f = [(i,date.today()- date.fromtimestamp(i.stat()[-2])) 
+     for i in p.iterdir()]
+
+for x,y in f:
+    print('{} --> {} days before.'.format(x.name,y.days))

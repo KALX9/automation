@@ -1,0 +1,5 @@
+from os.path import getsize as gz
+from pathlib import Path
+
+P = Path('/home/mana/Study Python').glob('*')
+max(P, key=gz).name

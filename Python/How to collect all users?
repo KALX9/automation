@@ -1,0 +1,4 @@
+import pwd
+
+usrs = [i[0] for i in pwd.getpwall()]
+print(usrs)

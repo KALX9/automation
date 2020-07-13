@@ -1,0 +1,8 @@
+
+from pathlib import Path
+
+rot = int(Path('/sys/block/sda/queue/rotational').read_text())
+if 1 == rot:
+    print("You are using HDD Drive.")
+else:
+    print("You are using SSD Drive.")

@@ -1,0 +1,15 @@
+from subprocess import Popen,PIPE
+import sys
+
+args = dict(stdin=PIPE, stdout=PIPE, stderr=PIPE)
+HOST="seelan"
+COMMAND="df -h | grep ^[^unt]"
+
+ssh = Popen(["ssh", "-t", "root@" + HOST, COMMAND], **args)
+result = ssh.stdout.read().splitlines()
+if result == []:
+    error = ssh.stderr.read().splitlines()
+    print(sys.stderr, "ERROR: %s" % error)
+else:
+    for i in result:
+        print(i.decode())

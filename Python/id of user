@@ -1,0 +1,30 @@
+import pwd
+import grp
+import re
+
+unam, (uid, gid) = pwd.getpwnam('mana')[0], pwd.getpwnam('mana')[2:4]
+print('uid='+str(uid)+'('+unam+')', end = '')
+print(' gid='+str(gid)+'('+unam+')', end = '')
+gusr = [(str(gr[2])+'('+gr[0]+')') for gr in grp.getgrall() if re.search(r'mana',str(gr))]
+jusr = ','.join(gusr)
+print(' groups=', end='')
+for i in jusr:
+    print(i, end='')
+    
+################################
+USER DETAILS
+##################################
+import pwd
+import grp
+import re
+
+def user_groups(usr):
+    unam, (uid, gid),(home,shell) = pwd.getpwnam(usr)[0], pwd.getpwnam(usr)[2:4], pwd.getpwnam(usr)[5:7]
+    print('{:15} {:^12} {:^12} {:^12} {:^12}'.format('User-Name','User-id','Group-id', 'Home','Shell'))
+    print('{:15} {:^12} {:^12} {:^12} {:^12}\n'.format(unam,uid,gid,home,shell))
+    gusr = [gr[0] for gr in grp.getgrall() if re.search(r''+usr+'',str(gr))]
+    print("User's Groups:")
+    print(*gusr)
+
+inp = input('Enter user name: ')
+user_groups(inp)

@@ -1,0 +1,9 @@
+from pathlib import Path as Pa
+
+f = Pa(input('Enter File Name: '))
+d = Pa('/var')
+
+for i in d.rglob('*'):
+    if i.name.lower() == f.name.lower():
+        if i.is_file():
+            print(i)

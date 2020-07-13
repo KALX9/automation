@@ -1,0 +1,10 @@
+from pathlib import Path as Pa
+
+print('Where to search?')
+d = Pa(input('Enter Folder Name: '))
+f = Pa(input('Enter File Name: '))
+
+for i in d.rglob('*'):
+    if i.stem.lower() == f.stem.lower():
+        if i.is_file():
+            print(i)

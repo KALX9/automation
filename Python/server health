@@ -1,0 +1,6 @@
+import os
+
+if os.getloadavg()[0] > os.cpu_count():
+    print('Server going critical stage.')
+else:
+    print('Server running smooth.')

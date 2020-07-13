@@ -1,0 +1,15 @@
+from datetime import date
+from pathlib import Path
+import shutil
+
+inp = int(input('Enter how many days before:'))
+p = Path('/home/mana/Temp/task2') ## This is source destination 
+files = [(i,(date.today() - date.fromtimestamp(i.stat()[-2])).days) 
+ for i in p.iterdir()]
+
+print('Below files are Backup.')
+print('*'*23)
+for x,y in files:
+    if y >= inp:
+        print(x.name, 'older',y,'days.')
+        shutil.move(str(x),'/home/mana/Backup/')  ## This is Backup destination 

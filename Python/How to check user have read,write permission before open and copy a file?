@@ -1,0 +1,21 @@
+import os
+
+path = '/home/mana/Work/tmp.txt'
+
+if os.access(path, os.R_OK):    # This is check permission
+    with open(path) as opn:
+        st = opn.read()
+st.splitlines()
+
+## Check wirte permission. Before copy a file ##
+
+import os
+import shutil
+
+p1 = '/etc/sudoers'
+p2 = '/home/mana/Work/tmp.txt'
+
+if os.access(p1, os.W_OK):    # This is check write permission
+    shutil.copy(p1,p2)
+else:
+    print("You don't have suffcient permission.")

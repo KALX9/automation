@@ -1,0 +1,18 @@
+
+from pathlib import Path
+
+p = Path('/proc')
+
+def pro(name):
+    pid = [i for i in p.iterdir() 
+           if str(i.name).isdigit() and i.is_dir()]
+    stat = [j.joinpath('status').read_text().split()[1]
+            for j in pid]
+    if name in stat:
+        print(repr(name), 'Process running')
+    else:
+         print(repr(name), 'Process not running')
+        
+
+inp = input('Enter Process Name:')
+pro(inp)

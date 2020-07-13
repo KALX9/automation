@@ -1,0 +1,7 @@
+from pathlib import Path
+
+p = Path('/proc/29/status')
+if 'vulnerable' in p.read_text():
+    print('Yes. Your kernel bybass vulnerable')
+else:
+    print('No. Your kernel not bybass vulnerable')

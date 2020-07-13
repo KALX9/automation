@@ -1,0 +1,6 @@
+from pathlib import Path
+from collections import Counter
+
+p = Path('/home/mana/Work/dup.txt').read_text().splitlines()
+d = [i for i,j in Counter(p).items() if j > 1]
+print(*sorted(d), sep = '\n')

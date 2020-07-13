@@ -1,0 +1,3 @@
+from pathlib import Path
+
+'vmx' in Path('/proc/cpuinfo').read_text().split()

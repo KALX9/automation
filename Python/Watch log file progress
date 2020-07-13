@@ -1,0 +1,8 @@
+from pathlib import Path
+from time import sleep
+
+while True:
+    p = Path('/var/log/syslog').read_text().splitlines()
+    print(*p[-10:], sep = '\n', end = '\r')
+    del p
+    sleep(2)

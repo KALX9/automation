@@ -1,0 +1,11 @@
+import filecmp
+from pathlib import Path
+
+filecmp.clear_cache()
+d1 = Path('/home/mana/Temp/task1')
+d2 = Path('/home/mana/Temp/task2')
+print('These same files are removed:')
+x = filecmp.dircmp(str(d1), str(d2))
+for i in  x.common and x.same_files:
+    print(d1.joinpath(i))
+    d1.joinpath(i).unlink()

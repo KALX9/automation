@@ -1,0 +1,14 @@
+from pathlib import Path
+import os
+import re
+
+com = re.compile(r'bios|product')
+
+p = Path('/sys/class/dmi/id')
+clt = [i for i in p.iterdir() if os.access(i, os.R_OK) and com.search(str(i))]
+bios = {j.stem: j.read_text().strip() for j in clt}
+
+print(f" Manufacturer: {bios['bios_vendor']}")
+print(f" Product Name: {bios['product_name']}")
+print(f" Bios Version: {bios['bios_version']}")
+print(f" Bios Date: {bios['bios_date']}")

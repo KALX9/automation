@@ -1,0 +1,6 @@
+from pathlib import Path
+from collections import Counter
+
+P = Path('/home/mana/Work').glob('*')
+ext = {i.name: i.suffix for i in P if i.is_file()}
+Counter(ext.values())

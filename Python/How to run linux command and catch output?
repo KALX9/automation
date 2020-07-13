@@ -1,0 +1,11 @@
+# Method: 1
+from subprocess import run,PIPE
+
+cmd = 'who'.split()
+run(cmd, stdout = PIPE).stdout.decode()
+
+# Method: 2
+from subprocess import check_output as outp
+
+cmd = 'who'.split()
+outp(cmd).decode()

@@ -1,0 +1,5 @@
+from pathlib import Path
+
+lines = Path('/etc/hosts').read_text().splitlines()
+fetch = [i for i in lines if 'localhost'in i]
+print(*fetch, sep = '\n')

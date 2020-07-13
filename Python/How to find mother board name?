@@ -1,0 +1,9 @@
+%%python3 
+
+from pathlib import Path
+import re
+
+path = Path('/sys/class/dmi/id')
+boa = [bd for bd in path.iterdir() if re.search(r'board_(ven|nam)',str(bd))]
+board = [rb.read_text().strip() for rb in boa]
+print(*board)

@@ -1,0 +1,10 @@
+import os
+import stat
+
+path = '/home/mana/Work/run'
+f_dict = {}
+for i in os.scandir(path):
+    f_dict.setdefault(i.name, []).append(stat.S_IMODE(i.stat()[0]))
+    f_dict.setdefault(i.name, []).append(stat.filemode(i.stat()[0]))
+for x,y in sorted(f_dict.items()):
+    print('{:12} {}  {:o}'.format(x,y[1],y[0]))

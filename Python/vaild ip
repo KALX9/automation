@@ -1,0 +1,2 @@
+ip = '192.168.1.123'.split('.')
+len([*filter(lambda x: 1 <= len(x) <= 3 and x.isdecimal(), ip)]) == 4

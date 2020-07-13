@@ -1,0 +1,22 @@
+from pathlib import Path
+import re
+
+net = {}
+comp = re.compile(r'carrier$|operstate')
+d = Path('/sys/class/net')
+addr = [i for i in d.rglob('*/*') if comp.search(str(i))]
+rlo = [j for j in addr if not re.search(r'/lo/',str(j))]
+
+for x in rlo:
+    net.setdefault(x.parent.stem,[]).append(x.read_text().strip())
+
+def con(s):
+    if s == '1':
+        return 'Network Cable connected'
+    else:
+        return 'Network Cable not connected'
+
+print('{:^2} {:^20} {:^20}'.format('Network-Name','Network-Status','Cable-Status'))
+print('*'*62)
+for a,b in net.items():
+    print('{!r:^5} {:^25} {}'.format(a,b[0].upper(),con(b[1])))
