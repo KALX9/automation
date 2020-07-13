@@ -1,0 +1,15 @@
+How to find all failed SSH login attempts in Linux?
+
+Centos,Redhat:
+# egrep "Fail(ed|ure)" /var/log/secure
+# journalctl _SYSTEMD_UNIT=sshd.service | egrep "Fail(ed|ure)"   
+Ubuntu:
+# egrep "Fail(ed|ure)" /var/log/auth.log
+# journalctl _SYSTEMD_UNIT=ssh.service | egrep "Fail(ed|ure)"
+
+Remove duplicate
+# grep "Failed password" /var/log/auth.log | awk ‘{if (a[$11]++ == 0) print}’ 
+
+
+
+

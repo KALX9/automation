@@ -1,0 +1,77 @@
+1. nm
+2. objdump
+3. hexdump
+
+How to read Binary file assemble code(Machine code)?
+You can read Machine code. If you know assembly language. You can easily understand.
+$ objdump -S /usr/bin/python3.4
+
+/usr/bin/python3.4:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+000000000041c088 <_init>:
+  41c088:       48 83 ec 08             sub    $0x8,%rsp
+  41c08c:       48 8b 05 65 2f 4e 00    mov    0x4e2f65(%rip),%rax        # 8feff8 <_Py_capitalize__doc__+0x243898>
+  41c093:       48 85 c0                test   %rax,%rax
+  41c096:       74 05                   je     41c09d <_init+0x15>
+  41c098:       e8 13 04 00 00          callq  41c4b0 <__gmon_start__@plt>
+  41c09d:       48 83 c4 08             add    $0x8,%rsp
+  41c0a1:       c3                      retq   
+
+Disassembly of section .plt:
+
+000000000041c0b0 <initgroups@plt-0x10>:
+  41c0b0:       ff 35 52 2f 4e 00       pushq  0x4e2f52(%rip)        # 8ff008 <_Py_capitalize__doc__+0x2438a8>
+  41c0b6:       ff 25 54 2f 4e 00       jmpq   *0x4e2f54(%rip)        # 8ff010 <_Py_capitalize__doc__+0x2438b0>
+  41c0bc:       0f 1f 40 00             nopl   0x0(%rax)
+
+000000000041c0c0 <initgroups@plt>:
+  41c0c0:       ff 25 52 2f 4e 00       jmpq   *0x4e2f52(%rip)        # 8ff018 <_Py_capitalize__doc__+0x2438b8>
+  41c0c6:       68 00 00 00 00          pushq  $0x0
+  41c0cb:       e9 e0 ff ff ff          jmpq   41c0b0 <_init+0x28>
+
+000000000041c0d0 <log10@plt>:
+  41c0d0:       ff 25 4a 2f 4e 00       jmpq   *0x4e2f4a(%rip)        # 8ff020 <_Py_capitalize__doc__+0x2438c0>
+  41c0d6:       68 01 00 00 00          pushq  $0x1
+
+################################################################################################################
+
+objdump --disassemble bin/flip
+
+Output:
+bin/flip: file format Mach-O 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+__text:
+100001220: 55 pushq %rbp
+100001221: 48 89 e5 movq %rsp, %rbp
+100001224: 48 83 ec 20 subq $32, %rsp
+100001228: c7 45 fc 00 00 00 00 movl $0, -4(%rbp)
+10000122f: 89 7d f8 movl %edi, -8(%rbp)
+100001232: 48 89 75 f0 movq %rsi, -16(%rbp)
+100001236: 81 7d f8 03 00 00 00 cmpl $3, -8(%rbp)
+10000123d: 0f 8d 0c 00 00 00 jge 12 <_main+0x2F>
+100001243: 48 8b 45 f0 movq -16(%rbp), %rax
+100001247: 48 8b 38 movq (%rax), %rdi
+10000124a: e8 61 01 00 00 callq 353 <__Z9exitUsagePKc>
+10000124f: 48 8b 45 f0 movq -16(%rbp), %rax
+100001253: 48 8b 40 08 movq 8(%rax), %rax
+100001257: 0f be 08 movsbl (%rax), %ecx
+10000125a: 81 f9 2d 00 00 00 cmpl $45, %ecx
+100001260: 0f 84 0c 00 00 00 je 12 <_main+0x52>
+100001266: 48 8b 45 f0 movq -16(%rbp), %rax
+10000126a: 48 8b 38 movq (%rax), %rdi
+10000126d: e8 3e 01 00 00 callq 318 <__Z9exitUsagePKc>
+100001272: 48 8b 45 f0 movq -16(%rbp), %rax
+100001276: 48 8b 40 08 movq 8(%rax), %rax
+10000127a: 8a 48 01 movb 1(%rax), %cl
+10000127d: 88 4d ef movb %cl, -17(%rbp)
+100001280: 0f be 55 ef movsbl -17(%rbp), %edx
+100001284: 81 fa 75 00 00 00 cmpl $117, %edx
+10000128a: 0f 84 39 00 00 00 je 57 <_main+0xA9>
+
+... and about 99 pages more. :) But, at least you'll be able to see the basic format of the program.
+
+
