@@ -6,4 +6,4 @@ my_pat=r'\bpython[23]?\b'
 #print(re.findall(my_pat,my_str))
 
 for each_ob in re.finditer(my_pat,my_str):
-	print(f'The match is: {each_ob.group()} starting index: {each_ob.start()}, ending index {each_ob.end()-1}')
+	print(f'The match is: {each_ob.group()} starting Index: {each_ob.start()}, ending index {each_ob.end()-1}')
