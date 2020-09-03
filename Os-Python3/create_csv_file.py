@@ -15,7 +15,7 @@ csv_writer.writerow(['S_No',"Name",'Age'])
 csv_writer.writerow([1,"John",23])
 csv_writer.writerow([2,"Cliton",24])
 '''
-my_data=[['S_No',"Name",'Age'],[1,"John",23],[2,"Cliton",24]]
+my_data=[['S_No',"Name",'Age'],[1,"Jon",23],[2,"Cliton",24]]
 csv_writer.writerows(my_data)
 fo.close()
 
