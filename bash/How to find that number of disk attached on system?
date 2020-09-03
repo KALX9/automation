@@ -1,2 +1,0 @@
-
-sudo fdisk -l /dev/sd? | awk ‘/^Disk.*s$/{disk++} END {print disk}’

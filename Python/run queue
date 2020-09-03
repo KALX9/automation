@@ -1,6 +1,0 @@
-from pathlib import Path
-
-pr = [i.split()[-1] 
-      for i in Path('/proc/stat').read_text().splitlines() 
-      if i.startswith('procs_running')]
-print(*pr)

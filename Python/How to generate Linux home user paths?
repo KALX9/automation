@@ -1,9 +1,0 @@
-from pathlib import Path
-
-p = ['Desktop',  'Documents',  
-     'Downloads',  'Music', 
-     'Pictures', 'Public',  
-     'Templates',  'Videos']
-
-for i in p:
-    print(Path.home().joinpath(i))

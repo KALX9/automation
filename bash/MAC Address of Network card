@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ifconfig | awk '/eth|wlan/ { print "MAC Address of",$1,"-",$NF}'

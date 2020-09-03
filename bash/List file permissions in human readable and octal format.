@@ -1,2 +1,0 @@
-
-stat -c '%n | %A | %a' <file name>

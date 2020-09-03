@@ -1,8 +1,0 @@
-from pathlib import Path
-
-p = Path('/proc/cpuinfo').read_text().splitlines()
-ht = [i for i in p if i.startswith('siblings')]
-if int(ht[0].split(':')[1]) >= 2:
-    print('Yes. Hyper-Thread Available.')
-else:
-    print('No. Hyper-Thread not Available.')

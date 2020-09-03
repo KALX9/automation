@@ -1,5 +1,0 @@
-from pathlib import Path
-
-nd = Path('/home/mana/mydir/newdir')    
-nd.mkdir(parents=True, exist_ok= True)    # Create new directory
-nd.joinpath('new.txt').touch()            # Create new file

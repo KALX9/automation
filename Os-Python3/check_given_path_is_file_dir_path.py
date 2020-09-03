@@ -1,4 +1,4 @@
-#This is a platform independet script(you can run on any operating system)
+#This is a platform independet script(you can run on any operating systm)
 import os
 path=input("Enter your path: ")
 

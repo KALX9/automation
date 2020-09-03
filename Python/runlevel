@@ -1,8 +1,0 @@
-import re
-
-with open('/var/run/utmp',errors='ignore') as f:
-    r = f.read().split()
-    for i in r:
-        m = re.search(r'[3-5].*runlevel',i)
-        if m:
-            print(str(m.group()).replace('~',' '))      

@@ -1,5 +1,5 @@
 import re
-my_str="This is about python. Python is easy to learn  and we have two major versions: python2 and python3 "
+my_str="This is about python. Python is easy to learn  and we have two major version's: python2 and python3 "
 
 my_pat=r'\bPython[23]?\b'
 

@@ -1,3 +1,0 @@
-
-awk -v id=$UID 'BEGIN {user=ENVIRON["USER"]; if (id !=0 ) printf "User %s Not Root user\n", user}'
-User joe Not Root user

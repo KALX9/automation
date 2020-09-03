@@ -1,8 +1,0 @@
-%%python3
-
-with open('/proc/modules') as mod:
-    lmod = mod.read().splitlines()
-fmod = [i.split()[:-2] for i in lmod]
-
-for j in fmod:
-    print(' '.join(j))

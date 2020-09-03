@@ -1,8 +1,0 @@
-from pathlib import Path
-
-pdir = [adt.joinpath('status') for adt in Path('/proc').glob('[0-9]*')]
-zom = [(rxt.parent.name ,rxt.read_text().splitlines()[:3][1].split('\t')[1]) for rxt in pdir]
-
-for pid, zombie in zom:
-    if 'Z (zombie)' in zombie:
-        print(pid, zombie)

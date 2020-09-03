@@ -1,9 +1,0 @@
-from os.path import getmtime
-
-f1 = '/home/mana/Work/FILE1.txt'
-f2 = '/home/mana/Work/FILE2.txt'
-
-if getmtime(f2) > getmtime(f1):
-    print("FILE1.txt older than FILE2.txt")
-else:
-    print("FILE1.txt not older than FILE2.txt")

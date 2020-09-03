@@ -1,5 +1,0 @@
-from pathlib import Path
-
-P = Path('/home/mana/Work/')
-r = (P/'test1.txt').read_text() + (P/'test2.txt').read_text()
-print(r, file=open('/home/mana/Work/result.txt', 'w'))

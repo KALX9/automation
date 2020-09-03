@@ -1,8 +1,0 @@
-from pathlib import Path as Pa
-
-f = Pa(input('Enter folder Name: '))
-d = Pa('/home/mana/')
-
-for i in d.rglob('*'):
-    if i.name.lower() == f.name.lower():
-        if i.is_dir()

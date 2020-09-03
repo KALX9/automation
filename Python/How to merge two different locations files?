@@ -1,6 +1,0 @@
-from pathlib import Path
-
-p1 = Path('/etc/hostname').read_text().splitlines()
-p2 = Path('/etc/lighttpd/conf-available/90-javascript-alias.conf').read_text().splitlines()
-m = p1 + p2
-print(*m, sep = '\n', file = open('/home/mana/new.txt','w'))
