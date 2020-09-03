@@ -1,7 +1,7 @@
 import os
 import sys
 import datetime
-req_path=input("Enter your path: ")
+req_path=input("Enter yourpath: ")
 age=3
 if not os.path.exists(req_path):
    print("Please provide valid path ")

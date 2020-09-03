@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 import os
-req_path=input("Enter your directory path: ")
+req_path=input("Enter  directory path: ")
 #req_ex=input("Enter the required files extention .py/.sh/.log/.txt: ")
 
 if os.path.isfile(req_path):
